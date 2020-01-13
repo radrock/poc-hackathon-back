@@ -1,0 +1,211 @@
+{
+  "type": "record",
+  "name": "TechnicalStationAvro",
+  "namespace": "com.rte_france.plasma.material.referential",
+  "fields": [
+    {
+      "name": "denomination",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "protectionPlan",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "particularRisk",
+      "type": [
+        "null",
+        {
+          "type": "string",
+          "avro.java.string": "String"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "materials",
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": {
+            "type": "record",
+            "name": "MaterialAvro",
+            "fields": [
+              {
+                "name": "technicalStationCategory",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "technicalStation",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "objectDesignation",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "type",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "gender",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "landmark",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "stage",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "serialNumber",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "dateMes",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "dateManufacture",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "category",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "equipement",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "status",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              },
+              {
+                "name": "owner",
+                "type": [
+                  "null",
+                  {
+                    "type": "string",
+                    "avro.java.string": "String"
+                  }
+                ],
+                "default": null
+              }
+            ]
+          },
+          "java-class": "java.util.List"
+        }
+      ],
+      "default": null
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 package com.rte_france.plasma.hackathon.config;
 
+import com.rte_france.plasma.material.referential.TechnicalStationAvro;
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.opensmartgridplatform.adapter.kafka.MeterReading;
@@ -24,8 +26,10 @@ public class KafkaConsumerConfiguration {
     private String groupId;
     @Value("${spring.kafka.consumer.auto-offset-reset}")
     private String autoOffsetReset;
-
-
+    @Value("${spring.kafka.properties.schema-registry}")
+    private String schemaRegistry;
+    @Value("${spring.kafka.properties.specific-avro-reader}")
+    private String specificAvroReader;
     @Bean
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
@@ -33,20 +37,22 @@ public class KafkaConsumerConfiguration {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
+        props.put("schema.registry.url", schemaRegistry);
+        props.put("specific.avro.reader", specificAvroReader);
         return props;
     }
 
     @Bean
-    public ConsumerFactory<String, MeterReading> consumerFactory() {
+    public ConsumerFactory<String, TechnicalStationAvro> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, MeterReading>
+    public ConcurrentKafkaListenerContainerFactory<String, TechnicalStationAvro>
     kafkaListenerContainerFactory() {
 
-        ConcurrentKafkaListenerContainerFactory<String, MeterReading> factory =
+        ConcurrentKafkaListenerContainerFactory<String, TechnicalStationAvro> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.getContainerProperties().setMissingTopicsFatal(false);
         factory.setConsumerFactory(consumerFactory());

@@ -1,19 +1,21 @@
 server:
-  port: 9002
+  port: 9010
 
 spring:
   application:
     name: Hackathon-MeterReading
   kafka:
     properties:
-      schema-registry: not-used
+      schema-registry: http://localhost:8084
+      specific-avro-reader: true
     consumer:
       bootstrap-servers: 127.0.0.1:9092
-      #group-id: hackathon
-      topics: topicMeterReading
+      group-id: hackathon
+      topics: t_local_etat_m_materials
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
 logging:
   level:
     root: info

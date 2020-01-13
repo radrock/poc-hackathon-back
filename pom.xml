@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<avro.version>1.9.1</avro.version>
+		<confluent.version>5.3.0</confluent.version>
 	</properties>
 
 	<dependencies>
@@ -50,6 +51,17 @@
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro</artifactId>
 			<version>${avro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>${confluent.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-avro -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-avro</artifactId>
+			<version>2.10.1</version>
 		</dependency>
 	</dependencies>
 

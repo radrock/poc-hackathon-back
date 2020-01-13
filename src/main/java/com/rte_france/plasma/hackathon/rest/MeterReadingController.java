@@ -1,5 +1,6 @@
 package com.rte_france.plasma.hackathon.rest;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController("MeterReadingController.v1")
 @RequestMapping("meter-reading")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MeterReadingController {
 
     private final List<SseEmitter> emitters = new ArrayList<>();
