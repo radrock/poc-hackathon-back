@@ -8,12 +8,21 @@ spring:
     properties:
       schema-registry: http://192.168.1.4:8081
       specific-avro-reader: true
-    consumer:
       bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,192.168.1.16:6667
+    consumer:
       group-id: spring-app-hackathon
+      topics: meter-reading-power,meter-reading-internal-temperature
       auto-offset-reset: earliest
       key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    producer:
+      key-serializer:  io.confluent.kafka.serializers.KafkaAvroSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      compression-type: gzip
+      acks: all
+      properties:
+        linger.ms: 1000
+        schema.registry.url: http://192.168.1.4:8081
 logging:
   level:
     root: info
@@ -25,3 +34,10 @@ logging:
 topics:
   meter-reading-power: meter-reading-power
   meter-reading-internal-temp: meter-reading-internal-temperature
+  meter-reading-power-it : meter-reading-power-it
+
+
+temperatures:
+  thresholds:
+    normal : 200
+    ubnormal: 230
