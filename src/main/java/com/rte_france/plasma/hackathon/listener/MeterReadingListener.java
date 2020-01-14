@@ -1,6 +1,7 @@
 package com.rte_france.plasma.hackathon.listener;
 
 import com.rte_france.plasma.hackathon.rest.MeterReadingController;
+import org.opensmartgridplatform.adapter.kafka.MeterReading;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -14,11 +15,11 @@ public class MeterReadingListener {
     private MeterReadingController controller;
 
     @org.springframework.kafka.annotation.KafkaListener(topics = "${spring.kafka.consumer.topics}",groupId = "${spring.kafka.consumer.group-id}" )
-    public void read(String meterReading){
+    public void read(MeterReading meterReading){
         SseEmitter latestEm = controller.getLatestEmitter();
         try {
             if(latestEm != null){
-                latestEm.send(meterReading);
+                latestEm.send(meterReading.toString());
             }
         } catch (IOException e) {
             latestEm.completeWithError(e);

@@ -11,10 +11,10 @@ spring:
     consumer:
       bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,git :6667
       group-id: spring-app-hackathon
-      topics: meter-reading-power
+      topics: meter-reading-internal-temp
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
 logging:
   level:
     root: info
