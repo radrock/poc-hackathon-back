@@ -9,7 +9,7 @@ spring:
       schema-registry: http://192.168.1.4:8081
       #specific-avro-reader: true
     consumer:
-      bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,git :6667
+      bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,192.168.1.16:6667
       group-id: spring-app-hackathon
       topics: meter-reading-internal-temp
       auto-offset-reset: earliest
