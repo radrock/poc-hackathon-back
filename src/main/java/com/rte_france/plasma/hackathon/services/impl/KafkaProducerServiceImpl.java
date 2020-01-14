@@ -28,7 +28,6 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
     @Override
     public void sendToKafka(MeterReading meterReading) {
         com.rte_france.plasma.kafka.adapter.MeterReading sended = mapper.beanToDto(meterReading);
-        System.out.println(sended);
         kafkaTemplate.send(topicName,sended);
         kafkaTemplate.flush();
         sendToSee(sended);
