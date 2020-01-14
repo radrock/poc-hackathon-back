@@ -6,15 +6,14 @@ spring:
     name: Hackathon-MeterReading
   kafka:
     properties:
-      schema-registry: http://localhost:8084
+      schema-registry: http://192.168.1.4:8081
       specific-avro-reader: true
     consumer:
-      bootstrap-servers: 127.0.0.1:9092
-      group-id: hackathon
-      topics: t_local_etat_m_materials
+      bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,git :6667
+      group-id: spring-app-hackathon
+      topics: meter-reading-power
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
 logging:
   level:
@@ -24,3 +23,4 @@ logging:
   pattern:
     file: "%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n"
     console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+
