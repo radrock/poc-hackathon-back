@@ -1,8 +1,9 @@
 package com.rte_france.plasma.hackathon.config;
 
-import com.rte_france.plasma.kafka.adapter.MeterReading;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.opensmartgridplatform.adapter.kafka.MeterReadingEnhanced;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +27,7 @@ public class KafkaProducerConfiguration {
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         props.put("schema.registry.url", schemaRegistry);
 
@@ -34,12 +35,12 @@ public class KafkaProducerConfiguration {
     }
 
     @Bean
-    public ProducerFactory<String, MeterReading> producerFactory() {
+    public ProducerFactory<String, MeterReadingEnhanced> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, MeterReading> kafkaTemplate() {
+    public KafkaTemplate<String, MeterReadingEnhanced> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

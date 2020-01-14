@@ -4,6 +4,7 @@ import com.rte_france.plasma.hackathon.mappers.MeterReadingMapper;
 import com.rte_france.plasma.hackathon.rest.MeterReadingController;
 import com.rte_france.plasma.hackathon.services.KafkaProducerService;
 import org.opensmartgridplatform.adapter.kafka.MeterReading;
+import org.opensmartgridplatform.adapter.kafka.MeterReadingEnhanced;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,7 +18,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
     @Autowired
     private MeterReadingMapper mapper;
     @Autowired
-    private  KafkaTemplate<String, com.rte_france.plasma.kafka.adapter.MeterReading> kafkaTemplate;
+    private  KafkaTemplate<String, MeterReadingEnhanced> kafkaTemplate;
 
     @Value("${topics.meter-reading-power-it}")
     private  String topicName;
@@ -27,14 +28,14 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
 
     @Override
     public void sendToKafka(MeterReading meterReading) {
-        com.rte_france.plasma.kafka.adapter.MeterReading sended = mapper.beanToDto(meterReading);
-        kafkaTemplate.send(topicName,sended);
+        MeterReadingEnhanced enchancedMeterReading = mapper.beanToDto(meterReading);
+        kafkaTemplate.send(topicName,enchancedMeterReading);
         kafkaTemplate.flush();
-        sendToSee(sended);
+        sendToSee(enchancedMeterReading);
     }
 
 
-    private void sendToSee(com.rte_france.plasma.kafka.adapter.MeterReading meterReading) {
+    private void sendToSee(MeterReadingEnhanced meterReading) {
         SseEmitter latestEm = controller.getLatestEmitter();
         try {
             if(latestEm != null){

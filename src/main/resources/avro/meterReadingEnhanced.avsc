@@ -1,7 +1,7 @@
 {
   "type": "record",
-  "name": "MeterReading",
-  "namespace": "com.rte_france.plasma.kafka.adapter",
+  "name": "MeterReadingEnhanced",
+  "namespace": "org.opensmartgridplatform.adapter.kafka",
   "fields": [
     {
       "name": "valuesInterval",

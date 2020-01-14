@@ -1,15 +1,16 @@
 package com.rte_france.plasma.hackathon.mappers;
 
-import com.rte_france.plasma.kafka.adapter.MeterReading;
 import org.mapstruct.*;
+import org.opensmartgridplatform.adapter.kafka.MeterReading;
+import org.opensmartgridplatform.adapter.kafka.MeterReadingEnhanced;
 
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface MeterReadingMapper {
 
 
-    MeterReading beanToDto(org.opensmartgridplatform.adapter.kafka.MeterReading meterReading);
+    MeterReadingEnhanced beanToDto(MeterReading meterReading);
     @AfterMapping
-    default void addBackReference(@MappingTarget MeterReading target) {
+    default void addBackReference(@MappingTarget MeterReadingEnhanced target) {
         target.setExternalTemperature("15");
         if(!target.getIntervalBlocks().isEmpty() && target.getIntervalBlocks().size() == 2){
             if(Float.parseFloat(target.getIntervalBlocks().get(1).getIntervalReadings().get(0).getValue()) >= 230){
