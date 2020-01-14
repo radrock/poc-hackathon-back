@@ -25,4 +25,4 @@ logging:
 
 topics:
   meter-reading-power: meter-reading-internal-power
-  meter-reading-internal-temp: meter-reading-internal-temp
+  meter-reading-internal-temp: meter-reading-internal-temperature
