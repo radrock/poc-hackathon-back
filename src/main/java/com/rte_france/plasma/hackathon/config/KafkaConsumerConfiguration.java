@@ -27,8 +27,8 @@ public class KafkaConsumerConfiguration {
     private String autoOffsetReset;
     @Value("${spring.kafka.properties.schema-registry}")
     private String schemaRegistry;
-//    @Value("${spring.kafka.properties.specific-avro-reader}")
-//    private String specificAvroReader;
+    @Value("${spring.kafka.properties.specific-avro-reader}")
+    private String specificAvroReader;
     @Bean
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
@@ -38,7 +38,7 @@ public class KafkaConsumerConfiguration {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,KafkaAvroDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put("schema.registry.url", schemaRegistry);
-        //props.put("specific.avro.reader", specificAvroReader);
+        props.put("specific.avro.reader", specificAvroReader);
         return props;
     }
 
