@@ -14,6 +14,7 @@ public class MeterReadingListener {
 
     @Autowired
     private MeterReadingController controller;
+    //private MeterReading meterReading;
 
     @KafkaListener(topics = "${topics.meter-reading-power}",groupId = "${spring.kafka.consumer.group-id}" )
     public void readMeterReadingPower(MeterReading meterReading){
@@ -29,7 +30,7 @@ public class MeterReadingListener {
     }
 
     @KafkaListener(topics = "${topics.meter-reading-internal-temp}",groupId = "${spring.kafka.consumer.group-id}" )
-    public void readmeterReadingInternalTemp(MeterReading meterReading){
+    public void readMeterReadingInternalTemp(MeterReading meterReading){
         System.out.println("meter-reading-internal-temp : " + meterReading);
         SseEmitter latestEm = controller.getLatestEmitter();
         try {
