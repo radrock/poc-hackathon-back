@@ -11,7 +11,6 @@ spring:
     consumer:
       bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,192.168.1.16:6667
       group-id: spring-app-hackathon
-      topics: meter-reading-power
       auto-offset-reset: earliest
       key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
@@ -24,3 +23,6 @@ logging:
     file: "%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n"
     console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
 
+topics:
+  meter-reading-power: meter-reading-internal-power
+  meter-reading-internal-temp: meter-reading-internal-temp
