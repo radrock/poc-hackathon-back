@@ -7,14 +7,14 @@ spring:
   kafka:
     properties:
       schema-registry: http://192.168.1.4:8081
-      specific-avro-reader: true
+      #specific-avro-reader: true
     consumer:
       bootstrap-servers:  192.168.1.15:6667,192.168.1.14:6667,192.168.1.17:6667,git :6667
       group-id: spring-app-hackathon
       topics: meter-reading-power
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 logging:
   level:
     root: info
