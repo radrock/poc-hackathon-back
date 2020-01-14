@@ -13,7 +13,7 @@ spring:
       group-id: spring-app-hackathon
       topics: meter-reading-power
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
 logging:
   level:
