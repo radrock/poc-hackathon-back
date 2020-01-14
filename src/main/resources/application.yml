@@ -18,11 +18,10 @@ logging:
   level:
     root: info
     com.rte_france.plasma.hackathon: debug
-    org.apache.kafka: debug
   pattern:
     file: "%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n"
     console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
 
 topics:
-  meter-reading-power: meter-reading-internal-power
+  meter-reading-power: meter-reading-power
   meter-reading-internal-temp: meter-reading-internal-temperature
