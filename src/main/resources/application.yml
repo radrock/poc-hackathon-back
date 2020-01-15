@@ -39,5 +39,5 @@ topics:
 
 temperatures:
   thresholds:
-    normal : 200
-    ubnormal: 230
+    normal : 145
+    ubnormal: 160
